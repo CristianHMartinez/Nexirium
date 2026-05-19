@@ -118,7 +118,7 @@
     }
 
     /* ── SECTION ANCHOR OFFSET (fixed nav) ── */
-    #services, #how, #why, #vision, #contact {
+    #services, #how, #why, #faq, #vision, #contact {
       scroll-margin-top: 88px;
     }
 
@@ -862,6 +862,63 @@
       box-shadow: 0 0 10px rgba(232,160,32,.12);
     }
 
+    /* ── FAQ ── */
+    .faq-list {
+      margin-top: var(--space-12);
+      max-width: 780px;
+    }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .faq-item:first-child { border-top: 1px solid rgba(255,255,255,.06); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--neutral-100);
+      user-select: none;
+      transition: color .2s;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .faq-q:hover { color: var(--gold-400); }
+    .faq-icon {
+      width: 26px; height: 26px;
+      background: rgba(232,160,32,.09);
+      border: 1px solid rgba(232,160,32,.2);
+      border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold-500);
+      transition: background .3s, transform .35s, box-shadow .3s;
+    }
+    .faq-item.open .faq-icon {
+      background: rgba(232,160,32,.16);
+      box-shadow: 0 0 12px rgba(232,160,32,.2);
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .4s cubic-bezier(0,.9,.5,1);
+    }
+    .faq-item.open .faq-a { max-height: 220px; }
+    .faq-a p {
+      color: var(--neutral-500);
+      font-size: 14px;
+      line-height: 1.78;
+      font-weight: 400;
+      padding-bottom: 22px;
+      max-width: 680px;
+    }
+
     /* ── VISION ── */
     #vision {
       border-top: 1px solid rgba(255,255,255,.04);
@@ -971,26 +1028,94 @@
     footer {
       position: relative; z-index: 1;
       border-top: 1px solid rgba(255,255,255,.05);
-      padding: 36px 8%;
+      background: var(--navy-950);
+      padding: 64px 8% 0;
     }
-    .footer-inner {
+    .footer-top {
       max-width: 1200px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 48px;
     }
     .footer-brand {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 17px;
-      color: var(--neutral-700);
+      font-size: 19px;
+      color: var(--neutral-200);
+      margin-bottom: 12px;
     }
     .footer-brand span { color: var(--gold-500); }
-    .footer-copy { color: var(--neutral-800); font-size: 13px; }
-    .footer-tag { color: var(--neutral-800); font-size: 12px; font-weight: 500; letter-spacing: .05em; }
+    .footer-brand-desc {
+      color: var(--neutral-700);
+      font-size: 13.5px;
+      line-height: 1.72;
+      font-weight: 400;
+      max-width: 250px;
+      margin-bottom: 24px;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--neutral-600);
+      text-decoration: none;
+      transition: background .22s, border-color .22s, color .22s;
+    }
+    .footer-social:hover {
+      background: rgba(232,160,32,.09);
+      border-color: rgba(232,160,32,.22);
+      color: var(--gold-400);
+    }
+    .footer-col-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--neutral-600);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      color: var(--neutral-700);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 400;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold-400); }
+    .footer-contact-items { display: flex; flex-direction: column; gap: 13px; }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--neutral-700);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .footer-contact-item svg { flex-shrink: 0; color: var(--gold-600); margin-top: 1px; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-copy { color: var(--neutral-800); font-size: 12.5px; }
+    .footer-tag  { color: var(--neutral-800); font-size: 12px; font-weight: 500; letter-spacing: .05em; }
 
     /* ── REVEAL ── */
     .r {
@@ -1025,7 +1150,8 @@
       .stat-grid { grid-template-columns: 1fr; }
       .stat-card.wide { flex-direction: column; }
       .form-row { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 4px; }
     }
     @media (max-width: 480px) {
       .hero-h1 { font-size: clamp(2.4rem,11vw,3.2rem); }
@@ -1238,6 +1364,17 @@
       box-shadow: 0 0 14px rgba(61,96,153,.22);
     }
 
+    [data-theme="light"] .faq-item { border-color: rgba(0,0,0,.08); }
+    [data-theme="light"] .faq-item:first-child { border-color: rgba(0,0,0,.08); }
+    [data-theme="light"] .faq-q { color: var(--neutral-800); }
+    [data-theme="light"] .faq-q:hover { color: var(--navy-300); }
+    [data-theme="light"] .faq-icon {
+      background: rgba(61,96,153,.08);
+      border-color: rgba(32,53,82,.16);
+      color: var(--navy-300);
+    }
+    [data-theme="light"] .faq-item.open .faq-icon { background: rgba(61,96,153,.16); }
+
     [data-theme="light"] .step-num {
       background: #FFFFFF;
       border-color: rgba(32,53,82,.22);
@@ -1281,10 +1418,30 @@
 
     [data-theme="light"] .c-detail { border-color: rgba(0,0,0,.06); color: var(--neutral-400); }
     [data-theme="light"] .c-icon { background: rgba(61,96,153,.08); color: #203552; }
-    [data-theme="light"] footer { border-color: rgba(0,0,0,.06); }
-    [data-theme="light"] .footer-brand { color: var(--neutral-500); }
+    [data-theme="light"] footer {
+      border-color: rgba(0,0,0,.06);
+      background: #EDECEA;
+    }
+    [data-theme="light"] .footer-brand { color: var(--neutral-800); }
+    [data-theme="light"] .footer-brand-desc { color: var(--neutral-500); }
+    [data-theme="light"] .footer-col-title { color: var(--neutral-500); }
+    [data-theme="light"] .footer-links a { color: var(--neutral-600); }
+    [data-theme="light"] .footer-links a:hover { color: var(--navy-300); }
+    [data-theme="light"] .footer-social {
+      background: rgba(0,0,0,.04);
+      border-color: rgba(0,0,0,.09);
+      color: var(--neutral-500);
+    }
+    [data-theme="light"] .footer-social:hover {
+      background: rgba(61,96,153,.08);
+      border-color: rgba(32,53,82,.18);
+      color: var(--navy-300);
+    }
+    [data-theme="light"] .footer-contact-item { color: var(--neutral-600); }
+    [data-theme="light"] .footer-contact-item svg { color: var(--navy-300); }
+    [data-theme="light"] .footer-bottom { border-color: rgba(0,0,0,.07); }
     [data-theme="light"] .footer-copy,
-    [data-theme="light"] .footer-tag { color: var(--neutral-700); }
+    [data-theme="light"] .footer-tag { color: var(--neutral-500); }
 
     [data-theme="light"] blockquote { color: var(--neutral-200); }
     [data-theme="light"] .quote-mark { opacity: .07; }
@@ -1601,6 +1758,61 @@
   </div>
 </section>
 
+<!-- ════════════ FAQ ════════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="tag r">Preguntas frecuentes</div>
+    <h2 class="heading r d1">Todo lo que quieres saber<br>antes de <em>empezar</em></h2>
+    <div class="faq-list">
+      <div class="faq-item r d1">
+        <button class="faq-q">
+          ¿Cuánto cuesta un proyecto?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Depende del alcance, pero trabajamos con un modelo accesible: empezamos con un MVP acotado para que no tengas que invertir todo de golpe. En la primera llamada te damos un rango real sin compromisos. No hay precios genéricos porque cada negocio es diferente.</p>
+        </div>
+      </div>
+      <div class="faq-item r d2">
+        <button class="faq-q">
+          ¿Cuánto tiempo tarda en estar listo?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Un MVP funcional puede estar listo entre 4 y 8 semanas según la complejidad. No prometemos lo que no podemos cumplir: antes de iniciar te entregamos un plan con fechas reales. La primera versión funcional llega antes de lo que imaginas.</p>
+        </div>
+      </div>
+      <div class="faq-item r d3">
+        <button class="faq-q">
+          ¿Tengo que pagar todo por adelantado?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>No. Trabajamos con pagos fraccionados por etapa: pagas conforme avanzas y ves resultados reales. Nunca pedimos el 100% por adelantado. Nuestro modelo está diseñado para que el riesgo sea mínimo de tu lado.</p>
+        </div>
+      </div>
+      <div class="faq-item r d4">
+        <button class="faq-q">
+          ¿Qué pasa si ya tengo un sistema en uso?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Podemos integrarnos con lo que ya tienes, mejorarlo, o reemplazarlo de forma gradual para que no pierdas continuidad en tu operación. La migración se planea con cuidado para que no haya un "día cero" donde todo se detenga.</p>
+        </div>
+      </div>
+      <div class="faq-item r d5">
+        <button class="faq-q">
+          ¿Trabajan solo con negocios grandes?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Al contrario. Estamos hechos para micro y pequeñas empresas. Nos importa más entender tu negocio que el tamaño de tu empresa. Si tienes un problema real que resolver, podemos ayudarte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ════════════ CONTACT ════════════ -->
 <section id="contact">
   <div class="wrap">
@@ -1667,7 +1879,7 @@
       </div>
       <div class="form-submit">
         <button type="submit" class="btn-primary" id="submit-btn">
-          Enviar mensaje
+          Quiero una propuesta gratuita
           <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -1677,10 +1889,63 @@
 
 <!-- ════════════ FOOTER ════════════ -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">Nex<span>í</span>rium</div>
-    <p class="footer-copy">© 2026 Nexírium · Ciudad Juárez, Chih., México</p>
-    <p class="footer-tag">Technology Opportunities</p>
+  <div class="footer-top">
+    <!-- Columna 1: Marca -->
+    <div>
+      <div class="footer-brand">Nex<span>í</span>rium</div>
+      <p class="footer-brand-desc">Software a la medida para micro y pequeñas empresas en Ciudad Juárez. Digitalizamos tu negocio sin inversión inicial elevada.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v1.765C14.93 9.665 16.235 8 18 8h0zm-12 1H0v12h4V9zM2 6.5A2 2 0 1 0 2 2.5a2 2 0 0 0 0 4z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="WhatsApp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna 2: Navegación -->
+    <div>
+      <div class="footer-col-title">Navegación</div>
+      <ul class="footer-links">
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#how">Cómo funciona</a></li>
+        <li><a href="#why">Por qué Nexírium</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3: Contacto -->
+    <div>
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact-items">
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ciudad Juárez, Chih., México
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          El Paso, Texas, EE.&nbsp;UU.
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+          Respuesta en menos de 24 h
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <a href="#contact" style="color:inherit;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold-400)'" onmouseout="this.style.color='inherit'">Envíanos un mensaje</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Nexírium · Todos los derechos reservados</p>
+    <p class="footer-tag">Technology Opportunities · Ciudad Juárez</p>
   </div>
 </footer>
 
@@ -1916,6 +2181,16 @@
     });
   });
 
+  /* ── FAQ ACCORDION ── */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
   /* ── FORM SUBMIT (placeholder) ── */
   function handleSubmit(e) {
     e.preventDefault();
@@ -1925,7 +2200,7 @@
     btn.style.boxShadow = '0 0 24px rgba(61,170,115,.3)';
     btn.disabled = true;
     setTimeout(() => {
-      btn.innerHTML = 'Enviar mensaje <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      btn.innerHTML = 'Quiero una propuesta gratuita <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
       btn.style.background = '';
       btn.style.boxShadow = '';
       btn.disabled = false;
