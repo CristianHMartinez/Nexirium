@@ -118,7 +118,7 @@
     }
 
     /* ── SECTION ANCHOR OFFSET (fixed nav) ── */
-    #services, #how, #why, #vision, #contact {
+    #services, #how, #why, #faq, #vision, #contact {
       scroll-margin-top: 88px;
     }
 
@@ -185,27 +185,22 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 16px; left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 48px);
-      max-width: 1200px;
+      top: 0; left: 0;
+      width: 100%;
       z-index: 500;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 24px;
-      background: rgba(7,13,26,.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: none;
-      border-radius: var(--radius-xl);
-      transition: opacity .35s, transform .35s, top .35s, background-color .4s ease, box-shadow .4s ease;
+      padding: 8px 5%;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background-color .4s ease, border-color .4s ease, backdrop-filter .4s ease;
     }
     nav.solid {
-      top: 8px;
-      background: rgba(7,13,26,.92);
-      border-color: rgba(232,160,32,.1);
-      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      background: rgba(7,13,26,.72);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom-color: rgba(255,255,255,.05);
     }
 
     .nav-logo {
@@ -224,14 +219,14 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 36px;
       list-style: none;
     }
     .nav-links a {
-      color: var(--neutral-500);
+      color: var(--neutral-600);
       text-decoration: none;
-      font-size: 13.5px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 400;
       transition: color .2s;
       position: relative;
     }
@@ -246,18 +241,21 @@
     .nav-links a:not(.nav-cta):hover { color: var(--neutral-200); }
     .nav-links a:not(.nav-cta):hover::after { width: 100%; }
     .nav-cta {
-      background: var(--gold-500) !important;
-      color: var(--navy-900) !important;
-      padding: 8px 18px;
-      border-radius: var(--radius-md);
-      font-weight: 700 !important;
+      background: transparent !important;
+      color: var(--gold-500) !important;
+      padding: 6px 14px !important;
+      border: 1px solid rgba(232,160,32,.35) !important;
+      border-radius: var(--radius-sm) !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
       letter-spacing: .01em;
-      transition: background .2s, box-shadow .2s, transform .2s !important;
+      transition: border-color .2s, color .2s, background .2s !important;
     }
     .nav-cta:hover {
-      background: var(--gold-400) !important;
-      box-shadow: var(--shadow-gold) !important;
-      transform: translateY(-1px);
+      background: rgba(232,160,32,.07) !important;
+      border-color: rgba(232,160,32,.65) !important;
+      transform: none !important;
+      box-shadow: none !important;
     }
     .nav-cta::after { display: none !important; }
 
@@ -283,12 +281,13 @@
 
     .mobile-menu {
       position: fixed;
-      top: 80px; left: 20px; right: 20px;
-      background: rgba(13,22,37,.97);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius-xl);
+      top: 62px; left: 0; right: 0;
+      background: rgba(7,13,26,.96);
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      border-radius: 0;
       backdrop-filter: blur(24px);
-      padding: 20px;
+      padding: 12px 5%;
       z-index: 490;
       display: none;
       flex-direction: column;
@@ -661,14 +660,16 @@
       margin-top: var(--space-12);
     }
     .service-card {
-      background: var(--navy-800);
+      background: linear-gradient(145deg, var(--navy-800), rgba(13,22,37,.92));
       border: 1px solid rgba(255,255,255,.05);
       border-radius: var(--radius-xl);
       padding: 28px;
       position: relative;
       overflow: hidden;
-      transition: transform .4s, opacity .4s;
+      transition: transform .4s, opacity .4s, background .4s, box-shadow .4s;
       cursor: default;
+      display: flex;
+      flex-direction: column;
     }
     .service-card::after {
       content: '';
@@ -680,8 +681,9 @@
       transition: transform .4s ease;
     }
     .service-card:hover {
-      border-color: rgba(232,160,32,.18);
+      border-color: rgba(232,160,32,.22);
       box-shadow: 0 20px 48px rgba(0,0,0,.25), var(--glow-gold);
+      background: linear-gradient(145deg, rgba(232,160,32,.04) 0%, var(--navy-800) 100%);
     }
     .service-card:hover::after { transform: scaleX(1); }
 
@@ -703,18 +705,48 @@
     }
     .service-card h3 {
       font-family: var(--font-display);
-      font-size: 16.5px;
+      font-size: 18px;
       font-weight: 700;
       margin-bottom: 10px;
       letter-spacing: -.01em;
     }
     .service-card p {
       color: var(--neutral-500);
-      font-size: 13.5px;
-      line-height: 1.72;
-      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.75;
+      font-weight: 400;
     }
     .service-card.dimmed { opacity: .52; }
+    .service-card.hero {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(232,160,32,.07) 0%, var(--navy-800) 60%);
+      border-color: rgba(232,160,32,.16);
+    }
+    .service-card.hero .s-icon { width: 56px; height: 56px; font-size: 24px; }
+    .service-card.hero h3 { font-size: 21px; }
+    .service-card.hero p { font-size: 14px; max-width: 520px; }
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 20px;
+      color: var(--gold-500);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity .3s, transform .3s, color .2s;
+      width: fit-content;
+    }
+    .service-card:hover .service-cta { opacity: 1; transform: translateY(0); }
+    .service-cta:hover { color: var(--gold-400); }
+    .service-cta svg { transition: transform .2s; }
+    .service-cta:hover svg { transform: translateX(3px); }
 
     .badge-soon {
       display: inline-flex;
@@ -745,35 +777,46 @@
     .process-steps::before {
       content: '';
       position: absolute;
-      top: 22px; left: calc(16.66% + 8px); right: calc(16.66% + 8px);
+      top: 24px;
+      left: 52px;
+      right: calc(33.33% + 4px);
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(232,160,32,.25) 25%, rgba(232,160,32,.25) 75%, transparent);
+      background: linear-gradient(90deg, rgba(232,160,32,.35), rgba(232,160,32,.35));
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1s cubic-bezier(.4,0,.2,1) .5s;
+      z-index: 0;
     }
+    .process-steps.line-in::before { transform: scaleX(1); }
     .step {
-      padding-right: 32px;
+      padding-right: 40px;
       position: relative;
+      z-index: 1;
+      transition: transform .38s ease;
     }
+    .step:hover { transform: translateY(-6px); }
     .step-num {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 44px; height: 44px;
-      background: var(--navy-800);
-      border: 1px solid rgba(232,160,32,.22);
+      width: 48px; height: 48px;
+      background: var(--navy-900);
+      border: 1.5px solid rgba(232,160,32,.28);
       border-radius: var(--radius-full);
       font-family: var(--font-display);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--gold-500);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       position: relative;
       z-index: 1;
-      transition: background .3s, border-color .3s, box-shadow .3s;
+      transition: background .3s, border-color .3s, box-shadow .3s, transform .3s;
     }
     .step:hover .step-num {
       background: rgba(232,160,32,.1);
       border-color: var(--gold-500);
-      box-shadow: 0 0 22px rgba(232,160,32,.22);
+      box-shadow: 0 0 28px rgba(232,160,32,.3);
+      transform: scale(1.1);
     }
     .step-tag {
       font-size: 9.5px;
@@ -781,20 +824,22 @@
       letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--gold-600);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .step h3 {
       font-family: var(--font-display);
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -.01em;
+      transition: color .25s;
     }
+    .step:hover h3 { color: var(--gold-300); }
     .step p {
       color: var(--neutral-500);
       font-size: 14px;
       line-height: 1.75;
-      font-weight: 300;
+      font-weight: 400;
       max-width: 280px;
     }
 
@@ -806,29 +851,37 @@
       margin-top: var(--space-12);
     }
     .why-card {
-      background: var(--navy-800);
+      background: linear-gradient(145deg, var(--navy-800), rgba(13,22,37,.88));
       border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--radius-xl);
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      transition: border-color .3s, transform .3s;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
     }
     .why-card:hover {
-      border-color: rgba(232,160,32,.12);
+      border-color: rgba(232,160,32,.18);
       transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.2), var(--glow-gold);
+    }
+    .why-card:hover .why-icon {
+      background: rgba(232,160,32,.16);
+      box-shadow: 0 0 14px rgba(232,160,32,.2);
     }
     .why-icon {
-      width: 38px; height: 38px;
+      width: 40px; height: 40px;
       background: rgba(232,160,32,.09);
+      border: 1px solid rgba(232,160,32,.18);
       border-radius: var(--radius-md);
       display: flex; align-items: center; justify-content: center;
-      font-size: 17px;
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: background .3s, box-shadow .3s;
     }
     .why-card h3 {
       font-family: var(--font-display);
-      font-size: 15.5px;
+      font-size: 16px;
       font-weight: 700;
       letter-spacing: -.01em;
     }
@@ -836,7 +889,72 @@
       color: var(--neutral-500);
       font-size: 13.5px;
       line-height: 1.7;
-      font-weight: 300;
+      font-weight: 400;
+    }
+    .why-card.featured {
+      background: linear-gradient(135deg, rgba(232,160,32,.07) 0%, var(--navy-800) 70%);
+      border-color: rgba(232,160,32,.2);
+    }
+    .why-card.featured .why-icon {
+      background: rgba(232,160,32,.14);
+      box-shadow: 0 0 10px rgba(232,160,32,.12);
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      margin-top: var(--space-12);
+      max-width: 780px;
+    }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .faq-item:first-child { border-top: 1px solid rgba(255,255,255,.06); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--neutral-100);
+      user-select: none;
+      transition: color .2s;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .faq-q:hover { color: var(--gold-400); }
+    .faq-icon {
+      width: 26px; height: 26px;
+      background: rgba(232,160,32,.09);
+      border: 1px solid rgba(232,160,32,.2);
+      border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold-500);
+      transition: background .3s, transform .35s, box-shadow .3s;
+    }
+    .faq-item.open .faq-icon {
+      background: rgba(232,160,32,.16);
+      box-shadow: 0 0 12px rgba(232,160,32,.2);
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .4s cubic-bezier(0,.9,.5,1);
+    }
+    .faq-item.open .faq-a { max-height: 220px; }
+    .faq-a p {
+      color: var(--neutral-500);
+      font-size: 14px;
+      line-height: 1.78;
+      font-weight: 400;
+      padding-bottom: 22px;
+      max-width: 680px;
     }
 
     /* ── VISION ── */
@@ -948,26 +1066,94 @@
     footer {
       position: relative; z-index: 1;
       border-top: 1px solid rgba(255,255,255,.05);
-      padding: 36px 8%;
+      background: var(--navy-950);
+      padding: 64px 8% 0;
     }
-    .footer-inner {
+    .footer-top {
       max-width: 1200px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 48px;
     }
     .footer-brand {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 17px;
-      color: var(--neutral-700);
+      font-size: 19px;
+      color: var(--neutral-200);
+      margin-bottom: 12px;
     }
     .footer-brand span { color: var(--gold-500); }
-    .footer-copy { color: var(--neutral-800); font-size: 13px; }
-    .footer-tag { color: var(--neutral-800); font-size: 12px; font-weight: 500; letter-spacing: .05em; }
+    .footer-brand-desc {
+      color: var(--neutral-700);
+      font-size: 13.5px;
+      line-height: 1.72;
+      font-weight: 400;
+      max-width: 250px;
+      margin-bottom: 24px;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--neutral-600);
+      text-decoration: none;
+      transition: background .22s, border-color .22s, color .22s;
+    }
+    .footer-social:hover {
+      background: rgba(232,160,32,.09);
+      border-color: rgba(232,160,32,.22);
+      color: var(--gold-400);
+    }
+    .footer-col-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--neutral-600);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      color: var(--neutral-700);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 400;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold-400); }
+    .footer-contact-items { display: flex; flex-direction: column; gap: 13px; }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--neutral-700);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .footer-contact-item svg { flex-shrink: 0; color: var(--gold-600); margin-top: 1px; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-copy { color: var(--neutral-800); font-size: 12.5px; }
+    .footer-tag  { color: var(--neutral-800); font-size: 12px; font-weight: 500; letter-spacing: .05em; }
 
     /* ── REVEAL ── */
     .r {
@@ -992,7 +1178,7 @@
       .services-grid, .why-grid { grid-template-columns: 1fr 1fr; }
       .process-steps { grid-template-columns: 1fr; gap: 40px; }
       .process-steps::before { display: none; }
-      .step { padding-right: 0; }
+      .step { padding-right: 0; z-index: auto; }
     }
     @media (max-width: 768px) {
       nav { width: calc(100% - 32px); padding: 12px 18px; }
@@ -1000,11 +1186,12 @@
       .hamburger { display: flex; }
       .services-grid,
       .why-grid { grid-template-columns: 1fr; }
-      .problem-stats { grid-template-columns: 1fr; }
-      .pstat + .pstat { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.07); }
-      .pstat { padding: var(--space-6) 0; }
+      .service-card.hero { grid-column: 1; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .stat-card.wide { flex-direction: column; }
       .form-row { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 4px; }
     }
     @media (max-width: 480px) {
       .hero-h1 { font-size: clamp(2.4rem,11vw,3.2rem); }
@@ -1092,17 +1279,29 @@
     }
 
     [data-theme="light"] nav {
-      background: rgba(248,245,240,.86);
-      box-shadow: 0 1px 0 rgba(0,0,0,.05);
+      background: transparent;
+      border-bottom-color: transparent;
     }
     [data-theme="light"] nav.solid {
-      top: 8px;
-      background: rgba(248,245,240,.97);
-      border-color: rgba(32,53,82,.08);
-      box-shadow: 0 4px 28px rgba(0,0,0,.07);
+      background: rgba(248,245,240,.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom-color: rgba(0,0,0,.06);
+    }
+    [data-theme="light"] .mobile-menu {
+      background: rgba(248,245,240,.98);
+      border-bottom-color: rgba(0,0,0,.06);
     }
     [data-theme="light"] .nav-links a { color: var(--neutral-500); }
     [data-theme="light"] .nav-links a:not(.nav-cta):hover { color: var(--neutral-200); }
+    [data-theme="light"] .nav-cta {
+      color: #203552 !important;
+      border-color: rgba(32,53,82,.3) !important;
+    }
+    [data-theme="light"] .nav-cta:hover {
+      background: rgba(32,53,82,.06) !important;
+      border-color: rgba(32,53,82,.55) !important;
+    }
     [data-theme="light"] .hamburger span { background: var(--neutral-400); }
     [data-theme="light"] .mobile-menu {
       background: rgba(248,245,240,.98);
@@ -1153,12 +1352,18 @@
 
     [data-theme="light"] .service-card {
       background: #FFFFFF;
-      border-color: rgba(0,0,0,.06);
+      border-color: rgba(0,0,0,.07);
       box-shadow: 0 2px 14px rgba(0,0,0,.05);
     }
     [data-theme="light"] .service-card:hover {
-      border-color: rgba(32,53,82,.18);
+      border-color: rgba(32,53,82,.2);
       box-shadow: 0 16px 40px rgba(0,0,0,.08), var(--glow-gold);
+      background: #FFFFFF;
+    }
+    [data-theme="light"] .service-card.hero {
+      background: #FFFFFF;
+      border-color: rgba(32,53,82,.18);
+      box-shadow: 0 4px 20px rgba(32,53,82,.08);
     }
     [data-theme="light"] .service-card::after {
       background: linear-gradient(90deg, transparent, rgba(32,53,82,.28), transparent);
@@ -1172,28 +1377,56 @@
       background: rgba(61,96,153,.16);
       box-shadow: 0 0 18px rgba(61,96,153,.28);
     }
+    [data-theme="light"] .service-cta { color: var(--navy-300); }
+    [data-theme="light"] .service-cta:hover { color: var(--navy-200); }
 
     [data-theme="light"] .why-card {
       background: #FFFFFF;
-      border-color: rgba(0,0,0,.06);
+      border-color: rgba(0,0,0,.07);
       box-shadow: 0 2px 10px rgba(0,0,0,.04);
     }
-    [data-theme="light"] .why-card:hover { border-color: rgba(32,53,82,.12); }
-    [data-theme="light"] .why-icon { background: rgba(61,96,153,.08); }
-
-    [data-theme="light"] .step-num {
+    [data-theme="light"] .why-card:hover {
+      border-color: rgba(32,53,82,.2);
+      box-shadow: 0 16px 40px rgba(0,0,0,.06), var(--glow-gold);
+    }
+    [data-theme="light"] .why-card.featured {
       background: #FFFFFF;
       border-color: rgba(32,53,82,.22);
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      box-shadow: 0 4px 20px rgba(32,53,82,.08);
+    }
+    [data-theme="light"] .why-icon {
+      background: rgba(61,96,153,.08);
+      border-color: rgba(32,53,82,.14);
+    }
+    [data-theme="light"] .why-card:hover .why-icon {
+      background: rgba(61,96,153,.16);
+      box-shadow: 0 0 14px rgba(61,96,153,.22);
+    }
+
+    [data-theme="light"] .faq-item { border-color: rgba(0,0,0,.08); }
+    [data-theme="light"] .faq-item:first-child { border-color: rgba(0,0,0,.08); }
+    [data-theme="light"] .faq-q { color: var(--neutral-800); }
+    [data-theme="light"] .faq-q:hover { color: var(--navy-300); }
+    [data-theme="light"] .faq-icon {
+      background: rgba(61,96,153,.08);
+      border-color: rgba(32,53,82,.16);
+      color: var(--navy-300);
+    }
+    [data-theme="light"] .faq-item.open .faq-icon { background: rgba(61,96,153,.16); }
+
+    [data-theme="light"] .process-steps::before {
+      background: linear-gradient(90deg, rgba(32,53,82,.2), rgba(32,53,82,.2));
+    }
+    [data-theme="light"] .step-num {
+      background: #FFFFFF;
+      border-color: rgba(32,53,82,.28);
     }
     [data-theme="light"] .step:hover .step-num {
-      background: rgba(61,96,153,.1);
+      background: rgba(61,96,153,.08);
       border-color: #3D6099;
-      box-shadow: 0 0 22px rgba(61,96,153,.3);
+      box-shadow: 0 0 22px rgba(61,96,153,.28);
     }
-    [data-theme="light"] .process-steps::before {
-      background: linear-gradient(90deg, transparent, rgba(32,53,82,.16) 25%, rgba(32,53,82,.16) 75%, transparent);
-    }
+    [data-theme="light"] .step:hover h3 { color: var(--navy-300); }
 
     [data-theme="light"] .btn-ghost {
       border-color: rgba(0,0,0,.16);
@@ -1224,10 +1457,30 @@
 
     [data-theme="light"] .c-detail { border-color: rgba(0,0,0,.06); color: var(--neutral-400); }
     [data-theme="light"] .c-icon { background: rgba(61,96,153,.08); color: #203552; }
-    [data-theme="light"] footer { border-color: rgba(0,0,0,.06); }
-    [data-theme="light"] .footer-brand { color: var(--neutral-500); }
+    [data-theme="light"] footer {
+      border-color: rgba(0,0,0,.06);
+      background: #EDECEA;
+    }
+    [data-theme="light"] .footer-brand { color: var(--neutral-800); }
+    [data-theme="light"] .footer-brand-desc { color: var(--neutral-500); }
+    [data-theme="light"] .footer-col-title { color: var(--neutral-500); }
+    [data-theme="light"] .footer-links a { color: var(--neutral-600); }
+    [data-theme="light"] .footer-links a:hover { color: var(--navy-300); }
+    [data-theme="light"] .footer-social {
+      background: rgba(0,0,0,.04);
+      border-color: rgba(0,0,0,.09);
+      color: var(--neutral-500);
+    }
+    [data-theme="light"] .footer-social:hover {
+      background: rgba(61,96,153,.08);
+      border-color: rgba(32,53,82,.18);
+      color: var(--navy-300);
+    }
+    [data-theme="light"] .footer-contact-item { color: var(--neutral-600); }
+    [data-theme="light"] .footer-contact-item svg { color: var(--navy-300); }
+    [data-theme="light"] .footer-bottom { border-color: rgba(0,0,0,.07); }
     [data-theme="light"] .footer-copy,
-    [data-theme="light"] .footer-tag { color: var(--neutral-700); }
+    [data-theme="light"] .footer-tag { color: var(--neutral-500); }
 
     [data-theme="light"] blockquote { color: var(--neutral-200); }
     [data-theme="light"] .quote-mark { opacity: .07; }
@@ -1392,7 +1645,7 @@
     <p class="body-text r d2">Desde el sistema más básico hasta soluciones con inteligencia artificial. Tú decides por dónde empezar.</p>
 
     <div class="services-grid">
-      <div class="service-card r">
+      <div class="service-card hero r">
         <div class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop">
 	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 	<path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10" />
@@ -1401,7 +1654,8 @@
 	<path d="M15 16v4" />
 </svg></div>
         <h3>Sistemas a la medida</h3>
-        <p>Inventario, ventas, cuentas por cobrar. Construimos exactamente lo que tu negocio necesita, sin funciones de más que lo compliquen.</p>
+        <p>Deja de perder tiempo en Excel y papeles. Construimos el sistema exacto que tu negocio necesita — inventario, ventas, cuentas por cobrar — sin funciones de más que lo compliquen.</p>
+        <a href="#contact" class="service-cta">Cotizar este servicio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
       <div class="service-card r d1">
         <div class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile">
@@ -1411,7 +1665,8 @@
 	<path d="M12 17v.01" />
 </svg></div>
         <h3>Apps web y móviles</h3>
-        <p>Tu negocio en el teléfono y en la computadora. Aplicaciones nativas y web que funcionan rápido y proyectan profesionalismo.</p>
+        <p>Tus clientes te buscan en el celular. Aplicaciones nativas y web que funcionan rápido y proyectan profesionalismo desde el primer clic.</p>
+        <a href="#contact" class="service-cta">Cotizar este servicio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
       <div class="service-card r d2">
         <div class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-palette">
@@ -1422,7 +1677,8 @@
 	<path d="M15.5 10.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
 </svg></div>
         <h3>Diseño UI/UX</h3>
-        <p>Interfaces que se ven bien y son fáciles de usar. Diseñamos la experiencia completa antes de escribir una línea de código.</p>
+        <p>La primera impresión entra por los ojos. Diseñamos la experiencia completa — y te la mostramos — antes de escribir una línea de código.</p>
+        <a href="#contact" class="service-cta">Cotizar este servicio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
       <div class="service-card r d3">
         <div class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tool">
@@ -1430,7 +1686,8 @@
 	<path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
 </svg></div>
         <h3>Mantenimiento y Soporte</h3>
-        <p>Tu sistema siempre funcionando. Actualizaciones, correcciones y respuesta rápida para que nunca te quedes solo frente a un problema.</p>
+        <p>Si algo falla, respondemos rápido. Actualizaciones, correcciones y soporte continuo porque sabemos que cada hora de caída le cuesta a tu negocio.</p>
+        <a href="#contact" class="service-cta">Cotizar este servicio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
       <div class="service-card dimmed r d4">
         <div class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brain">
@@ -1491,7 +1748,7 @@
       <div class="why-card r">
         <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg></div>
         <h3>Equipo local</h3>
-        <p>Somos de Juárez. Podemos reunirnos contigo, entendemos el contexto y hablamos el mismo idioma que tu negocio.</p>
+        <p>Sin zona horaria. Sin barreras de idioma. Somos de Juárez y podemos sentarnos contigo cuando lo necesites.</p>
       </div>
       <div class="why-card r d1">
         <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-receipt-2">
@@ -1500,28 +1757,28 @@
 	<path d="M14 8h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5m2 0v1.5m0 -9v1.5" />
 </svg></div>
         <h3>Precios accesibles</h3>
-        <p>Tecnología de calidad no debería ser exclusiva de empresas grandes. Nuestro modelo hace que cualquier negocio pueda acceder.</p>
+        <p>Tecnología de calidad no debería ser exclusiva de empresas grandes. Empezamos con lo esencial para que tu inversión sea real desde el primer día.</p>
       </div>
       <div class="why-card r d2">
         <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-wrench"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg></div>
         <h3>Soluciones personalizadas</h3>
-        <p>Nada genérico. Cada sistema está construido para tu negocio específico, no adaptado de una plantilla estándar.</p>
+        <p>Nada genérico. Cada sistema está construido desde cero para tu negocio — no adaptado de una plantilla que le sirve a todos por igual.</p>
       </div>
       <div class="why-card r d3">
         <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heart-handshake"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /><path d="M12 6l-3.293 3.293a1 1 0 0 0 0 1.414l.543 .543c.69 .69 1.81 .69 2.5 0l1 -1a3.182 3.182 0 0 1 4.5 0l2.25 2.25" /><path d="M12.5 15.5l2 2" /><path d="M15 13l2 2" /></svg>
         </div>
         <h3>Relación a largo plazo</h3>
-        <p>No entregamos y desaparecemos. Queremos crecer contigo y ser tu aliado tecnológico en cada etapa del camino.</p>
+        <p>No entregamos y desaparecemos. Queremos ser tu equipo tecnológico permanente y crecer con tu negocio en cada etapa del camino.</p>
       </div>
-      <div class="why-card r d4">
+      <div class="why-card featured r d4">
         <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world-map"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 8h-2a2 2 0 0 0 -2 2a2 2 0 1 1 -4 0v-1a2 2 0 0 0 -2 -2h-1a2 2 0 0 1 -2 -2v-.5" /><path d="M3 12h3a2 2 0 0 1 2 2v.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 1 1.5 1.5v3.25" /><path d="M15 20.5v-3.5a2 2 0 0 1 2 -2h3.5" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg></div>
         <h3>Mercado fronterizo</h3>
-        <p>Nuestra ubicación permite atender clientes en El Paso y Texas con la misma calidad a precios más competitivos que cualquier agencia americana.</p>
+        <p>Atendemos clientes en El Paso y Texas con la misma calidad que en Juárez — y a precios que ninguna agencia americana puede igualar.</p>
       </div>
       <div class="why-card r d5">
         <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-rocket"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3" /><path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" /><path d="M14 9a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg></div>
         <h3>Visión de futuro</h3>
-        <p>Apostamos por certificaciones internacionales, investigación y alianzas universitarias para mantenernos siempre a la vanguardia.</p>
+        <p>Certificaciones internacionales, investigación y alianzas con la UACJ. Apostamos por mantenernos a la vanguardia para que tu tecnología no envejezca.</p>
       </div>
     </div>
   </div>
@@ -1543,6 +1800,61 @@
         <p>Nexírium nació de una pregunta simple: ¿por qué los ingenieros de software en Juárez tienen que irse para encontrar oportunidades? Creemos que esas oportunidades se pueden crear aquí.</p>
         <p>Queremos ser la empresa que demuestre que desde esta ciudad se puede hacer tecnología de calidad, crecer hacia el mercado americano y dejarle algo real a la comunidad.</p>
         <p>Apostamos por investigación, alianzas con universidades y tecnologías emergentes. Hoy empezamos con lo que tenemos y todo el compromiso de hacerlo bien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FAQ ════════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="tag r">Preguntas frecuentes</div>
+    <h2 class="heading r d1">Todo lo que quieres saber<br>antes de <em>empezar</em></h2>
+    <div class="faq-list">
+      <div class="faq-item r d1">
+        <button class="faq-q">
+          ¿Cuánto cuesta un proyecto?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Depende del alcance, pero trabajamos con un modelo accesible: empezamos con un MVP acotado para que no tengas que invertir todo de golpe. En la primera llamada te damos un rango real sin compromisos. No hay precios genéricos porque cada negocio es diferente.</p>
+        </div>
+      </div>
+      <div class="faq-item r d2">
+        <button class="faq-q">
+          ¿Cuánto tiempo tarda en estar listo?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Un MVP funcional puede estar listo entre 4 y 8 semanas según la complejidad. No prometemos lo que no podemos cumplir: antes de iniciar te entregamos un plan con fechas reales. La primera versión funcional llega antes de lo que imaginas.</p>
+        </div>
+      </div>
+      <div class="faq-item r d3">
+        <button class="faq-q">
+          ¿Tengo que pagar todo por adelantado?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>No. Trabajamos con pagos fraccionados por etapa: pagas conforme avanzas y ves resultados reales. Nunca pedimos el 100% por adelantado. Nuestro modelo está diseñado para que el riesgo sea mínimo de tu lado.</p>
+        </div>
+      </div>
+      <div class="faq-item r d4">
+        <button class="faq-q">
+          ¿Qué pasa si ya tengo un sistema en uso?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Podemos integrarnos con lo que ya tienes, mejorarlo, o reemplazarlo de forma gradual para que no pierdas continuidad en tu operación. La migración se planea con cuidado para que no haya un "día cero" donde todo se detenga.</p>
+        </div>
+      </div>
+      <div class="faq-item r d5">
+        <button class="faq-q">
+          ¿Trabajan solo con negocios grandes?
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Al contrario. Estamos hechos para micro y pequeñas empresas. Nos importa más entender tu negocio que el tamaño de tu empresa. Si tienes un problema real que resolver, podemos ayudarte.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1614,7 +1926,7 @@
       </div>
       <div class="form-submit">
         <button type="submit" class="btn-primary" id="submit-btn">
-          Enviar mensaje
+          Quiero una propuesta gratuita
           <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -1624,10 +1936,63 @@
 
 <!-- ════════════ FOOTER ════════════ -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">Nex<span>í</span>rium</div>
-    <p class="footer-copy">© 2026 Nexírium · Ciudad Juárez, Chih., México</p>
-    <p class="footer-tag">Technology Opportunities</p>
+  <div class="footer-top">
+    <!-- Columna 1: Marca -->
+    <div>
+      <div class="footer-brand">Nex<span>í</span>rium</div>
+      <p class="footer-brand-desc">Software a la medida para micro y pequeñas empresas en Ciudad Juárez. Digitalizamos tu negocio sin inversión inicial elevada.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v1.765C14.93 9.665 16.235 8 18 8h0zm-12 1H0v12h4V9zM2 6.5A2 2 0 1 0 2 2.5a2 2 0 0 0 0 4z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="WhatsApp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna 2: Navegación -->
+    <div>
+      <div class="footer-col-title">Navegación</div>
+      <ul class="footer-links">
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#how">Cómo funciona</a></li>
+        <li><a href="#why">Por qué Nexírium</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3: Contacto -->
+    <div>
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact-items">
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ciudad Juárez, Chih., México
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          El Paso, Texas, EE.&nbsp;UU.
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+          Respuesta en menos de 24 h
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <a href="#contact" style="color:inherit;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold-400)'" onmouseout="this.style.color='inherit'">Envíanos un mensaje</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Nexírium · Todos los derechos reservados</p>
+    <p class="footer-tag">Technology Opportunities · Ciudad Juárez</p>
   </div>
 </footer>
 
@@ -1863,6 +2228,24 @@
     });
   });
 
+  /* ── HOW IT WORKS — line draw on scroll ── */
+  const lineEl = document.querySelector('.process-steps');
+  if (lineEl) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) e.target.classList.add('line-in');
+    }, { threshold: .3 }).observe(lineEl);
+  }
+
+  /* ── FAQ ACCORDION ── */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
   /* ── FORM SUBMIT (placeholder) ── */
   function handleSubmit(e) {
     e.preventDefault();
@@ -1872,7 +2255,7 @@
     btn.style.boxShadow = '0 0 24px rgba(61,170,115,.3)';
     btn.disabled = true;
     setTimeout(() => {
-      btn.innerHTML = 'Enviar mensaje <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      btn.innerHTML = 'Quiero una propuesta gratuita <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
       btn.style.background = '';
       btn.style.boxShadow = '';
       btn.disabled = false;
